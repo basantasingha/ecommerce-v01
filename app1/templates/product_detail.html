@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ datas.name }}{% endblock title %}
+<link rel="stylesheet"href="{% static 'css/details.css' %}">
+
+{% block content %}
+
+<style>
+ body {
+     font-family: 'Poppins', sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #eef1f7;
+ }
+ .container {
+     width: 70%;
+     display:flex;
+     margin: 50px auto;
+     background: white;
+     padding: 30px;
+     border-radius: 12px;
+     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+ }
+ .image-container img {
+     width: 30%;
+     border-radius: 12px;
+     transition: transform 0.3s ease;
+ }
+ .image-container img:hover {
+     transform: scale(1.05);
+ }
+ .details {
+     padding: 20px 0;
+     text-align: center;
+ }
+ .details h2 {
+     margin: 10px 0;
+     color: #2c3e50;
+     font-size: 28px;
+ }
+ .details p {
+     color: #7f8c8d;
+     font-size: 16px;
+     line-height: 1.6;
+ }
+ .price {
+     font-size: 24px;
+     font-weight: bold;
+     color: #e74c3c;
+     margin: 15px 0;
+ }
+ .buy-button {
+     display: inline-block;
+     padding: 12px 25px;
+     margin-top: 15px;
+     background-color: #27ae60;
+     color: white;
+     text-decoration: none;
+     border-radius: 8px;
+     font-size: 18px;
+     transition: background 0.3s ease;
+ }
+ .buy-button:hover {
+     background-color: #219150;
+ }
+</style>
+
+<div class="container">
+    <div class="image-container">
+        <img src="{{ datas.image.url }}" alt="Product Image">
+    </div>
+    <div class="details">
+        <h2>{{ datas.name }}</h2>
+        <p></p>
+        <p>{{ datas.description|safe }}</p>
+        <p class="price">${{ datas.price }}</p>
+        <button class="buy-button"><a href="{% url 'cart_add' datas.id %}">Add to Cart</a></button>
+    </div>
+</div>
+
+{% endblock content %}

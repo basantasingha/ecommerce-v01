@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Base{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1><strong>BASANTA-STORE</strong></h1>
+        <nav>
+            <div id="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <div class="search-box">
+                <form method="post" action="{% url 'search' %}" class="search-form">
+                    {% csrf_token %}
+                    <input type="search" name="search" placeholder="Search Products." id="searchinput"value="{{ query }}" required>
+                </form>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="{% url 'product_list' %}" id="nav-link">Home</a></li>
+                <li><a href="{% url 'cart_detail' %}" id="nav-link">Cart</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'my_products' %}" id="nav-link">My Products</a></li>
+                <li><a href="{% url 'profile' %}" id="nav-link">{{user}}</a></li>
+                <li><a href="{% url 'logout' %}" id="nav-link">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'register' %}" id="nav-link">Register</a></li>
+                <li><a href="{% url 'login' %}" id="nav-link">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block content %}{% endblock content %}
+
+    <footer>
+        <a href="{% url 'product_list' %}">Home</a>
+        <ul class="category_ul">
+            {% for categories in categories %}
+                <li class="category_list"><a id="category_list_ancor"href="/?category={{categories.id}}">{{ categories.name }}</a></li>
+            {% empty %}
+                <li>No categories available.</li>
+            {% endfor %}
+        </ul>
+        <p style="color:lightcyan">Created by: Ujjal Rajbanshi</p>
+        <p><strong>&copy; 2025 BASANTA-STORE. All rights reserved.</strong></p>
+    </footer>
+
+</body>
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+</html>

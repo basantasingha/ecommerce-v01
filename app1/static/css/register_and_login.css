@@ -1,0 +1,24 @@
+.form-box{
+    background:linear-gradient(green, rgb(0, 72, 255));
+    padding: 20px;
+    width: 400px;
+    margin:100px auto;
+    border-radius: 10px;
+    color: #fff;
+    overflow: hidden;
+}
+form input{
+    padding:10px 0;
+    width: 100%;
+    border-radius: 5px;
+    outline: none;
+}
+form button{
+    background:linear-gradient(red, black);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px 20px;
+    cursor: pointer;
+}

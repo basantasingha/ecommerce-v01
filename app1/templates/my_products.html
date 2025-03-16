@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}My Products{% endblock title %}
+
+{% block content %}
+
+
+<div class="cards-container"style="display:flex;">
+    {% for products in products %}
+    <div class="card"style="box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);,margin:10px;width:50%;
+    border-radius:8px;padding:10px;">
+            <img src="{{ products.image.url }}" alt="{{ products.name }}"style="width:100%;">
+
+        <div class="card-content">
+            <div class="card-title">{{ products.name }}</div>
+            <div class="card-price"><p>${{ products.price }}</p></div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

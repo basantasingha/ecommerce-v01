@@ -1,0 +1,27 @@
+{% extends "accounts/register.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+
+<a href="{% url 'product_list' %}"><i style="font-size:2rem;">&#8592;Back to Home</i></a>
+<br><br>
+<div style="margin:auto;width:400px;background:linear-gradient(green, rgb(0, 72, 255));border-radius:10px;color:#fff; padding:20px;text-align:center;">
+{% if profile_inf.profile_picture %}
+    <img src="{{ profile_inf.profile_picture.url }}" alt="Profile Picture"style="width:200px;height:200px;border-radius:100%;border:2px solid #fff;">
+{% else %}
+    <p>No profile picture available.</p>
+{% endif %}
+
+
+<h2>{{profile_inf.first_name}} {{profile_inf.last_name}}</h2>
+<p>{{profile_inf.email}}</p>
+<p>Phone Number : {{profile_inf.phone_number}}</p>
+<p>Address : {{profile_inf.address}}</p>
+<p>City : {{profile_inf.city}}</p>
+<p>State : {{profile_inf.state}}</p>
+<p>Country : {{profile_inf.country}}</p>
+<a href="{% url 'profile_update' %}"style="width:100%;color:#fff;text-decoration:none;font-family:arial;
+background-color:green;padding:10px 20px;border-radius:5px;">Update</a>
+</div>
+{% endblock content %}

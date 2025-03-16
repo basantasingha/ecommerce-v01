@@ -1,0 +1,15 @@
+{% extends "accounts/register.html" %}
+
+{% block title %}Profile Update{% endblock title %}
+
+{% block content %}
+<div class="form-box">
+<h2>Profile</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Update</button>
+</form>
+</div>
+{% endblock %}

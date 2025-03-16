@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{% endblock title %}
+
+{% block content %}
+
+<!--
+{% for allblogs in postblog %}
+<div class="product">
+    <img src="{{ allblogs.image.url }}" alt="{{ allblogs.name }}">
+
+    <h3>{{ allblogs.name }}</h3>
+    <p>${{ allblogs.price }}</p>
+    <button><a href="{% url 'cart_add' allblogs.id %}">Add to Cart</a></button>
+</div>
+{% endfor %}
+-->
+
+        {% if postblog %}
+            <div class="product-list">
+                {% for product in postblog %}
+                <div class="product">
+                <a href="{% url 'detail_product' product.pk %}"style="text-decoration:none;">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                
+                    <h3>{{ product.name }}</h3>
+                    <p>${{ product.price }}</p>
+                </a>
+                    <button><a href="{% url 'cart_add' product.id %}">Add to Cart</a></button>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-results">No products found.</p>
+        {% endif %}
+
+{% endblock content %}
